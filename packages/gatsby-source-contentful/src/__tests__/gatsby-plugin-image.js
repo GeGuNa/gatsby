@@ -35,7 +35,7 @@ describe(`contentful extend node type`, () => {
         Object {
           "format": "webp",
           "height": 210,
-          "src": "https://test.png?w=420&h=210&fm=webp",
+          "src": "//test.png?w=420&h=210&fm=webp",
           "width": 420,
         }
       `)
@@ -49,7 +49,7 @@ describe(`contentful extend node type`, () => {
         Object {
           "format": "webp",
           "height": 210,
-          "src": "https://test.png?w=420&h=210&fm=webp&r=10",
+          "src": "//test.png?w=420&h=210&fm=webp&r=10",
           "width": 420,
         }
       `)
@@ -63,7 +63,7 @@ describe(`contentful extend node type`, () => {
         Object {
           "format": "webp",
           "height": 210,
-          "src": "https://test.png?w=420&h=210&fm=webp&r=max",
+          "src": "//test.png?w=420&h=210&fm=webp&r=max",
           "width": 420,
         }
       `)
@@ -75,7 +75,7 @@ describe(`contentful extend node type`, () => {
         Object {
           "format": "webp",
           "height": 210,
-          "src": "https://test.png?w=420&h=210&fm=webp",
+          "src": "//test.png?w=420&h=210&fm=webp",
           "width": 420,
         }
       `)
@@ -87,18 +87,23 @@ describe(`contentful extend node type`, () => {
 
     const imageProps = {
       aspectRatio: 4.8698224852071,
-      baseUrl: `//images.ctfassets.net/k8iqpp6u0ior/3ljGfnpegOnBTFGhV07iC1/94257340bda15ad4ca8462da3a8afa07/347966-contentful-logo-wordmark-dark__1_-4cd185-original-1582664935__1_.png`,
+      baseUrl: `https://images.ctfassets.net/k8iqpp6u0ior/3ljGfnpegOnBTFGhV07iC1/94257340bda15ad4ca8462da3a8afa07/347966-contentful-logo-wordmark-dark__1_-4cd185-original-1582664935__1_.png`,
       width: 200,
       height: 41,
       image: {
-        contentful_id: `3ljGfnpegOnBTFGhV07iC1`,
-        spaceId: `k8iqpp6u0ior`,
-        createdAt: `2021-03-22T10:10:34.647Z`,
-        updatedAt: `2021-03-22T10:10:34.647Z`,
+        id: `mocked_gatsby-id`,
+        sys: {
+          id: `3ljGfnpegOnBTFGhV07iC1`,
+          spaceId: `k8iqpp6u0ior`,
+          locale: `en-US`,
+          firstPublishedAt: `2021-03-22T10:10:34.647Z`,
+          publishedAt: `2021-03-22T10:10:34.647Z`,
+        },
         contentType: `image/png`,
         title: `Contentful Logo PNG`,
         description: ``,
-        node_locale: `en-US`,
+        fileName: `mocked`,
+        url: `mocked`,
         internal: {
           contentDigest: `123`,
         },
@@ -113,7 +118,7 @@ describe(`contentful extend node type`, () => {
       },
     }
     test(`keeps image format`, async () => {
-      nock(`https://images.ctfassets.net:443`)
+      nock(`https://images.ctfassets.net`)
         .get(
           `/k8iqpp6u0ior/3ljGfnpegOnBTFGhV07iC1/94257340bda15ad4ca8462da3a8afa07/347966-contentful-logo-wordmark-dark__1_-4cd185-original-1582664935__1_.png`
         )
@@ -140,7 +145,7 @@ describe(`contentful extend node type`, () => {
       expect(nock.pendingMocks).toHaveLength(0)
     })
     test(`uses given image format`, async () => {
-      nock(`https://images.ctfassets.net:443`)
+      nock(`https:443//images.ctfassets.net`)
         .get(
           `/k8iqpp6u0ior/3ljGfnpegOnBTFGhV07iC1/94257340bda15ad4ca8462da3a8afa07/347966-contentful-logo-wordmark-dark__1_-4cd185-original-1582664935__1_.png`
         )
